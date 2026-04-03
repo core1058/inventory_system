@@ -21,8 +21,30 @@ The inventory management system provides an intuitive graphical interface for sm
 - Strict data validation for price and quantity
 - User-friendly GUI with automatic table refresh
 - No thrid-party libraries required
-
-
+## Project Structure
+inventory_system/
+--- project.py
+---inventory.py
+---user.py
+---gui.py
+---main.py
+## Preparatory work
+- Python 3.6 or higher installed
+- Tkinter
+## Instruction
+1. Make sure you have all 5 files in the same folder
+2. Check environment requirement
+3. function work: 
+   -  Add a product (ID, Name, Price, Quantity)
+   -  Delete a product (ID, Click Remove buttom)
+   -  Update Quantity (ID, Click Update button)
+   -  View total value (The total inventory value is shown at the bottom of the window)
+4. Permission:
+   - Administrator: All enabled
+   - Manager: Update & View enabled
+   - visitor: View only
+## 📃License
+This project is for learing and educational use only.
 
 
 
