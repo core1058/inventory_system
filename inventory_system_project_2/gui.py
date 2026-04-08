@@ -33,37 +33,42 @@ class InventoryGUI:
         self.tree.heading("Quantity", text="Quantity")
         self.tree.heading("Value", text="Total Value ($)")
         # set column width
-        self.tree.column("ID", width=100)
-        self.tree.column("Name", width=150)
-        self.tree.column("Price", width=100)
-        self.tree.column("Quantity", width=100)
-        self.tree.column("Value", width=120)
+        self.tree.column("ID", width=100, stretch=True)
+        self.tree.column("Name", width=150, stretch=True)
+        self.tree.column("Price", width=100, stretch=True)
+        self.tree.column("Quantity", width=100, stretch=True)
+        self.tree.column("Value", width=120, stretch=True)
         
         self.tree.pack(fill=tk.BOTH, expand=True)        
 
         #---------------------bottom: operation area---------------------------------------------------------------------------------------------------
         control_frame = ttk.Frame(self.root, padding="10")
-        control_frame.pack(fill=tk.X)
+        control_frame.pack(fill=tk.X, side=tk.BOTTOM)
 
         # add product area
+
         add_frame = ttk.LabelFrame(control_frame, text="Add New Product", padding="5")
         add_frame.pack(fill=tk.X, pady=5)
+        add_frame.columnconfigure(1, weight=1)   # ID entry column
+        add_frame.columnconfigure(3, weight=1)   # Name entry column
+        add_frame.columnconfigure(5, weight=1)   # Price entry column
+        add_frame.columnconfigure(7, weight=1)   # Quantity entry column
         
         ttk.Label(add_frame, text="ID:").grid(row=0, column=0, sticky=tk.W)
         self.add_id_entry = ttk.Entry(add_frame)
-        self.add_id_entry.grid(row=0, column=1, padx=5)
+        self.add_id_entry.grid(row=0, column=1, sticky="ew", padx=5)
         
         ttk.Label(add_frame, text="Name:").grid(row=0, column=2, sticky=tk.W)
         self.add_name_entry = ttk.Entry(add_frame)
-        self.add_name_entry.grid(row=0, column=3, padx=5)
+        self.add_name_entry.grid(row=0, column=3, sticky="ew", padx=5)
         
         ttk.Label(add_frame, text="Price:").grid(row=0, column=4, sticky=tk.W)
         self.add_price_entry = ttk.Entry(add_frame)
-        self.add_price_entry.grid(row=0, column=5, padx=5)
+        self.add_price_entry.grid(row=0, column=5, sticky="ew", padx=5)
         
         ttk.Label(add_frame, text="Quantity:").grid(row=0, column=6, sticky=tk.W)
         self.add_quantity_entry = ttk.Entry(add_frame)
-        self.add_quantity_entry.grid(row=0, column=7, padx=5)
+        self.add_quantity_entry.grid(row=0, column=7, sticky="ew", padx=5)
         
         self.add_btn = ttk.Button(add_frame, text="Add Product", command=self.add_product)
         self.add_btn.grid(row=0, column=8, padx=5)
@@ -71,14 +76,16 @@ class InventoryGUI:
         # update/delete
         update_frame = ttk.LabelFrame(control_frame, text="Update / Remove Product", padding="5")
         update_frame.pack(fill=tk.X, pady=5)
+        update_frame.columnconfigure(1, weight=1)   # Product ID entry column
+        update_frame.columnconfigure(3, weight=1)   # New Quantity entry column
         
         ttk.Label(update_frame, text="Product ID:").grid(row=0, column=0, sticky=tk.W)
         self.update_id_entry = ttk.Entry(update_frame)
-        self.update_id_entry.grid(row=0, column=1, padx=5)
+        self.update_id_entry.grid(row=0, column=1, sticky="ew", padx=5)
         
         ttk.Label(update_frame, text="New Quantity:").grid(row=0, column=2, sticky=tk.W)
         self.update_quantity_entry = ttk.Entry(update_frame)
-        self.update_quantity_entry.grid(row=0, column=3, padx=5)
+        self.update_quantity_entry.grid(row=0, column=3, sticky="ew", padx=5)
         
         self.update_btn = ttk.Button(update_frame, text="Update Quantity", command=self.update_product)
         self.update_btn.grid(row=0, column=4, padx=5)
@@ -88,7 +95,7 @@ class InventoryGUI:
 
         # all value of inventory
         self.total_value_label = ttk.Label(self.root, text="Total Inventory Value: $0.00", padding="10")
-        self.total_value_label.pack()
+        self.total_value_label.pack(fill=tk.X, side=tk.BOTTOM)
         # Determine whether the button is available based on the permission settings
         self.set_button_permissions()
 
