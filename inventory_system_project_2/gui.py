@@ -94,8 +94,8 @@ class InventoryGUI:
         self.remove_btn.grid(row=0, column=5, padx=5)
 
         # all value of inventory
-        self.total_value_label = ttk.Label(self.root, text="Total Inventory Value: $0.00", padding="10")
-        self.total_value_label.pack(fill=tk.X, side=tk.BOTTOM)
+        self.info_label = ttk.Label(self.root, text="", padding="10")
+        self.info_label.pack(fill=tk.X, side=tk.BOTTOM)
         # Determine whether the button is available based on the permission settings
         self.set_button_permissions()
 
@@ -125,7 +125,8 @@ class InventoryGUI:
             ))
         # update total value
         total = self.inventory.calculate_total_value()
-        self.total_value_label.config(text=f"Total Inventory Value: ${total:.2f}")
+        num_products = Inventory.numberOfProduct   # class variable
+        self.info_label.config(text=f"Total Inventory Value: ${total:.2f}    |    Number of Products: {num_products}")
 
     def add_product(self):
         # Get the content of the input box
