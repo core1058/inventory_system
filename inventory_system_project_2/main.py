@@ -6,8 +6,10 @@ import tkinter as tk
 
 # Initialize inventory, Test data, Start GUI
 def main():
+
     # create object
-    inventory = Inventory()
+    inventoryA = Inventory()
+    inventoryB = Inventory()
     # create user
     admin = AdminUser("admin_user")
 
@@ -17,16 +19,20 @@ def main():
         p2 = Product("P002", "Mouse", 25.50, 50)
         p3 = Product("P003", "Keyboard", 45.00, 30)
         
-        inventory.add_product(p1)
-        inventory.add_product(p2)
-        inventory.add_product(p3)
+        inventoryA.add_product(p1)
+        inventoryA.add_product(p2)
+        inventoryB.add_product(p2)
+        inventoryB.add_product(p3)
         
+        inventoryC = inventoryA + inventoryB
+        print(Inventory.addProductCount)
+
     except ValueError as e:
         print(f"Error initializing products: {e}")
 
     # start GUI window
     root = tk.Tk()
-    app = InventoryGUI(root, inventory, admin)
+    InventoryGUI(root, inventoryC, admin)
     root.mainloop()
 
 if __name__ == "__main__":
